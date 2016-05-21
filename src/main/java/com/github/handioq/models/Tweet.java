@@ -1,5 +1,7 @@
 package com.github.handioq.models;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,11 +10,14 @@ import java.util.Date;
  * который содержит в себе координаты твита, дату и текст твита.
  * @author Alexander Tereshkov
  */
+
+@ManagedBean(name="tweet")
+@RequestScoped
 public class Tweet {
 
-    private TweetLocation coordinates;
-    private Date dateTime;
-    private String message;
+    public TweetLocation coordinates;
+    public Date dateTime;
+    public String message;
 
     /*
      * Создает твит с указанными параметрами: координаты, сообщение, дата.

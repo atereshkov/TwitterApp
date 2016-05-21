@@ -1,7 +1,5 @@
 package com.github.handioq.database;
 
-
-
 import com.github.handioq.models.Tweet;
 import com.github.handioq.models.TweetList;
 import com.github.handioq.models.TweetLocation;

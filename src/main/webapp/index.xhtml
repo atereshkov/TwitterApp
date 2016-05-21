@@ -13,11 +13,33 @@
 
 <h:body>
 
-<h1>JSF</h1>
+<h1>Tweets table</h1>
 
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+   <h:dataTable value="#{tweetBean.getTweets()}" var="tweet" border="1">
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Message
+         </f:facet>
+         #{tweet.message}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Location
+         </f:facet>
+         #{tweet.coordinates.getX()}
+         #{tweet.coordinates.getY()}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Date
+         </f:facet>
+         #{tweet.dateTime}
+      </h:column>
+
+   </h:dataTable>
 
 </h:body>
 

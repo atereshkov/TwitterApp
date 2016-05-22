@@ -41,6 +41,42 @@
 
    </h:dataTable>
 
+   <h1>Tweet report</h1>
+
+   <h:form>
+      Enter hashtag
+      <h:inputText value="#{tweetBean.hashtag}" />
+      <h:commandButton value="Get report" action="#{tweetBean.setHashtag(tweetBean.hashtag)}" />
+   </h:form>
+
+   <h:outputLabel value="Tweets with hashtag: #{tweetBean.hashtag}" />
+
+   <h:dataTable value="#{tweetBean.getTweetsWithHashtag()}" var="tweet" border="1">
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Message
+         </f:facet>
+         #{tweet.message}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Location
+         </f:facet>
+         #{tweet.coordinates.getX()}
+         #{tweet.coordinates.getY()}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">
+            Tweet Date
+         </f:facet>
+         #{tweet.dateTime}
+      </h:column>
+
+   </h:dataTable>
+
 </h:body>
 
 </html>

@@ -19,6 +19,9 @@ public class TweetBean {
     private static final String PASSWORD = "286Z24hgf2";
 
     final String GET_TWEET = "SELECT * FROM all_tweets";
+    final String GET_WHERE_HASHTAG = "SELECT * FROM all_tweets WHERE message LIKE ";
+
+    private String hashtag;
 
     private Connection connection;
 
@@ -89,7 +92,36 @@ public class TweetBean {
         connect.close();
 
         return list;
-
     }
 
+    public List<Tweet> getTweetsWithHashtag()
+    {
+        List<Tweet> list = new ArrayList<Tweet>();
+
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(GET_WHERE_HASHTAG + "'%" + hashtag + "%'");
+            ResultSet result = preparedStatement.executeQuery();
+
+            while(result.next())
+            {
+                TweetLocation tweetLocation = new TweetLocation(result.getDouble("x"), result.getDouble("y"));
+                list.add(new Tweet(tweetLocation, result.getString("message"), result.getDate("datetime")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public String getHashtag() {
+        return hashtag;
+    }
+
+    public void setHashtag(String hashtag) {
+        this.hashtag = hashtag;
+    }
 }
